@@ -30,14 +30,7 @@ mongoose
 
 
 // Get the username, password, host, and databse from the .env file
-const mongoDB = ("mongodb+srv://"+
-                 process.env.USERNAME+
-                 ":"
-                 +process.env.PASSWORD+
-                 "@"
-                 +process.env.HOST+
-                 "/"
-                 +process.env.DATABASE);
+const mongoDB = ("mongodb://YI:123@cluster0-shard-00-00.5wtlj.mongodb.net:27017,cluster0-shard-00-01.5wtlj.mongodb.net:27017,cluster0-shard-00-02.5wtlj.mongodb.net:27017/comments?ssl=true&replicaSet=atlas-128v3r-shard-0&authSource=admin&retryWrites=true&w=majority");
 mongoose.connect(mongoDB,{useNewUrlParser: true, retryWrites: true});
 
 //debugging 
