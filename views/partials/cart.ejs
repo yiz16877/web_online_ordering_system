@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+ <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+      crossorigin="anonymous"
+  />
+</head>
+<body>
+  
+  
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  
+  <h2 style="color:white;">&nbsp;&nbsp;Venom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+    
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+    
+  <div class="collapse navbar-collapse" id="navbarResponsive">      
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/product">Check All Shoes</a></li>
+      <li class="nav-item"><a class="nav-link" href="/vendors">Check All Brands</a></li>
+    </ul>
+        
+     <ul class="navbar-nav ml-auto"> 
+         <li class="nav-item"><a class="nav-link active" href="/myCart">My Cart</a ></li>
+          <li class="nav-item"><a class="nav-link" href="/mine">My Profile</a ></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard">Log out</a></li>
+    </ul>
+ </div>
+</nav>
+</div>
+    <br/><br/><br/><br/>
+ 
+   
+    
+     <% if (list) { %>
+  <p style="text-align:center;">There are <%= list.length %> products in the Cart.</p>
+   <div class="row justify-content-center">
+     <div class ="row">
+       <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
+      <div class="table-responsive">
+    
+     <table class="table table-bordered" style="max-width:90%;">
+      <% list.forEach(function(product){ %>
+      <tr>
+        <td width="60%" rowspan="5"><img src=<%= product.shoeUrl %> 
+                  alt="Screenshots of the games" width="100%"></td>
+        <td >ID: <%= product.id %></td></tr>
+      <tr><td >NAME: <%= product.name %></td></tr>
+      <tr><td>BRAND: <%= product.brand %></td></tr>
+      <tr><td>PRICE: <%= product.price %></td></tr>
+      <tr><td>COLOR: <%= product.color %></td></tr>
+      <tr><td colspan="2" align="center"><form action="/updateCart?id=<%= product.id %>" method="POST">
+           <button class="btn btn-secondary btn-lg btn-block" type="submit">
+             Delete Item
+           </button>
+         </form></td></tr>
+      
+  <% }); %>
+    </table></div></div>
+        <div class="col-lg-auto col-md-auto col-sm-10 col-xs-10">
+      <div class="table-responsive text-center">
+          <table class="table table-bordered" style="max-width:95%;">
+      <tr><td ><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></td></tr>
+      <tr><td>Total Price: <%= total_price %></td></tr>
+      <tr><td align="center"><form action="/clearCart" method="POST">
+         <button class="btn btn-secondary btn-lg btn-block" type="submit">
+           Clear Cart
+         </button>
+    </form></td></tr>
+    </table> </div></div></div></div>
+    <% } else { %>
+    <p>No products in the Cart.</p>
+    <% } %>
+    
+  
+   
+
+    
+  <br/><br/><br/><br/>
+  
+  <footer class="container-fluid bg-dark">
+<p class="m-0 text-center text-white">Copyright &copy; Venom 2020</p>
+</footer>
+</body>
+</html>

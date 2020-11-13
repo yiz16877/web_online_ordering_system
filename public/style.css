@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: helvetica, arial, sans-serif;
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 2em;
 }
 
@@ -26,7 +26,6 @@ p {
 form {
   margin-bottom: 25px;
   padding: 15px;
-  background-color: cyan;
   display: inline-block;
   width: 100%;
   max-width: 340px;
@@ -64,8 +63,13 @@ li {
   margin-bottom: 5px;
 }
 
-footer {
+footer.end {
   margin-top: 50px;
   padding-top: 25px;
   border-top: 1px solid lightgrey;
+  float: left;
+  width: 100%;
 }
+
+
+

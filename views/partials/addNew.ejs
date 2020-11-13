@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shoes</title>
+  <link 
+      rel="stylesheet" 
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+      crossorigin="anonymous"
+  />
+</head>
+<body>
+  
+  
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  
+  <h2 style="color:white;">&nbsp;&nbsp;Venom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+    
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+    
+  <div class="collapse navbar-collapse" id="navbarResponsive">      
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/productadmin">Check All Shoes</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/addNew">Add New Shoes</a></li>
+    </ul>
+        
+     <ul class="navbar-nav ml-auto"> 
+
+          <li class="nav-item"><a class="nav-link" href="/dashboard">Log out</a></li>
+    </ul>
+ </div>
+</nav>
+</div>
+    <br/><br/><br/><br/>
+  
+ <div class="row justify-content-center">
+  <div class="card" style="width:60%;">
+  <h2 class="card-header"><storng style="color: pink">Add</storng> New Shoes </h2>
+  
+  <form style="padding:3%;" action="/addOne" method="post">
+   
+  <div class="form-group">
+      <label for="id">ID</label>
+      <input class="form-control" type="number" name="id">
+    </div>
+    
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input class="form-control" type="text" name="name">
+    </div>
+    
+    <div class="form-group">
+      <label for="brand">Brand</label>
+      <input class="form-control" type="text" name="brand">
+    </div>
+    
+      <div class="form-group">
+      <label for="price">Price</label>
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+      <input class="form-control" type="number" name="price">
+    </div>  </div>
+    
+    <div class="form-group">
+      <label for="color">Color</label>
+      <input class="form-control" type="text" name="color">
+    </div>
+    
+    <div class="form-group">
+      <label for="imageUrl">imageUrl</label>
+      <input class="form-control" type="text" name="imageUrl">
+    </div>
+  <button class="btn btn-secondary btn-lg btn-block" type="submit"> Submit </button>
+</form>
+  
+  
+  </div></div>
+  <br/><br/><br/><br/>
+  <footer class="container-fluid bg-dark">
+<p class="m-0 text-center text-white">Copyright &copy; Venom 2020</p>
+</footer>
+</body>
+
