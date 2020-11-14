@@ -28,6 +28,7 @@ mongoose
 
 
 
+mongoose
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
@@ -132,7 +133,7 @@ mongoose.connect(mongoDB,{useNewUrlParser: true, retryWrites: true});
 
 //debugging 
 mongoose.connection.on('connected', function (){
-  console.log('Mongoose connected to ');
+  console.log('Mongoose connected to '+process.env.DATABASE);
 });
 
 mongoose.connection.on('error', function (err){
