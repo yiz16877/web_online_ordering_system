@@ -63,13 +63,8 @@ li {
   margin-bottom: 5px;
 }
 
-footer.end {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
-  float: left;
-  width: 100%;
+.carousel-inner img {
+  width:10px;
 }
-
 
 
