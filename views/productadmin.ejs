@@ -14,9 +14,9 @@
   
   
   <div class="container-fluid">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light text-light bg-warning fixed-top">
   
-  <h2 style="color:white;">&nbsp;&nbsp;Pitts Restaurant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+  <h2 style="color:black;">&nbsp;&nbsp;Pitts Restaurant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -24,8 +24,8 @@
     
   <div class="collapse navbar-collapse" id="navbarResponsive">      
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link active" href="/productadmin">Check All Shoes</a></li>
-      <li class="nav-item"><a class="nav-link" href="/addNew">Add New Shoes</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/productadmin">Check All Cuisine</a></li>
+      <li class="nav-item"><a class="nav-link" href="/addNew">Add New Cuisine</a></li>
     </ul>
         
      <ul class="navbar-nav ml-auto"> 
@@ -54,7 +54,7 @@
       <tr><td >NAME: <%= product.name %></td></tr>
       <tr><td>BRAND: <%= product.brand %></td></tr>
       <tr><td>PRICE: <%= product.price %></td></tr>
-      <tr><td>COLOR: <%= product.color %></td></tr>
+     
  <tr><td colspan="2" align="center">
                <form action="/delete?id=<%= product.id %>" method="POST">
    
@@ -72,5 +72,6 @@
   </div>
     <br/><br/><br/><br/>
     
+
 </body>
 </html>

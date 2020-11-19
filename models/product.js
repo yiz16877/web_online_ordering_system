@@ -7,7 +7,6 @@ const productSchema = new Schema(
     name: {type: String},
     brand: {type: String},
     price: {type: Number},
-    color: {type: String},
     shoeUrl: {type: String},
   }
 );

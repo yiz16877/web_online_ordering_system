@@ -30,13 +30,13 @@ mongoose
 
 
 // Get the username, password, host, and databse from the .env file
-const mongoDB = ("mongodb://YI:123@cluster0-shard-00-00.5wtlj.mongodb.net:27017,cluster0-shard-00-01.5wtlj.mongodb.net:27017,cluster0-shard-00-02.5wtlj.mongodb.net:27017/restaurant?ssl=true&replicaSet=atlas-128v3r-shard-0&authSource=admin&retryWrites=true&w=majority");
+const mongoDB = ("mongodb+srv://123:123@cluster0.7ugkd.mongodb.net/restaurant?retryWrites=true&w=majority");
 mongoose.connect(mongoDB,{useNewUrlParser: true, retryWrites: true});
 
 //debugging 
-mongoose.connection.on('connected', function (){
-  console.log('Mongoose connected to '+process.env.DATABASE);
-});
+// mongoose.connection.on('connected', function (){
+//   console.log('Mongoose connected to '+process.env.DATABASE);
+// });
 
 mongoose.connection.on('error', function (err){
   console.log('Mongoose connection error: '+err);

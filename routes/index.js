@@ -31,6 +31,13 @@ router.get("/product", function(request, response) {
   });
 });
 
+router.get("/producttype", function(request, response) {
+  Product.find({brand:request.query.type}, function(err, product_list) {
+    response.render("producttype", {
+      product: product_list
+    });
+  });
+});
 
 // RETREIVE all  product for admin
 
@@ -122,8 +129,32 @@ router.get("/myCart", function(req, res) {
       productarray[0].product_list.forEach(function(product) {
         total_price = total_price + product.price;
       })
+       
+    let tempArr = [];
+		let  afterData=[]
+		for (let i = 0; i < productarray[0].product_list.length; i++) {
+			if (tempArr.indexOf(productarray[0].product_list[i].id) === -1) {
+				afterData.push({
+          id: productarray[0].product_list[i].id,
+					name: productarray[0].product_list[i].name,
+          brand: productarray[0].product_list[i].brand,
+					price: productarray[0].product_list[i].price,
+          color: productarray[0].product_list[i].color,
+					origin: [productarray[0].product_list[i]]
+				});
+				tempArr.push(productarray[0].product_list[i].id);
+			} else {
+				for (let j = 0; j < afterData.length; j++) {
+					if (afterData[j].id == productarray[0].product_list[i].id) {
+						afterData[j].origin.push(productarray[0].product_list[i]);
+						break;
+					}
+				}
+			}
+		}
+  
       res.render("cart", {
-        list: productarray[0].product_list,
+        list: afterData,
         total_price: total_price
       });
     }

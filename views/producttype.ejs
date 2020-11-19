@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cart</title>
- <link 
+  <title>Shoes</title>
+  <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
@@ -16,7 +16,7 @@
   <div class="container-fluid">
   <nav class="navbar navbar-expand-lg navbar-light text-light bg-warning fixed-top">
   
-  <h2 style="color:black;">&nbsp;&nbsp;Pitts Restaurant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+  <h2 style="color:black;">&nbsp;&nbsp;Pitts Restauranttype&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -25,12 +25,12 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">      
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="/product">Menu</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/product">Menu</a></li>
       <li class="nav-item"><a class="nav-link" href="/vendors">Types</a></li>
     </ul>
         
      <ul class="navbar-nav ml-auto"> 
-         <li class="nav-item"><a class="nav-link active" href="/myCart">My Cart</a ></li>
+        <li class="nav-item"><a class="nav-link" href="/myCart">My Cart</a ></li>
           <li class="nav-item"><a class="nav-link" href="/mine">My Profile</a ></li>
           <li class="nav-item"><a class="nav-link" href="/dashboard">Log out</a></li>
     </ul>
@@ -38,54 +38,45 @@
 </nav>
 </div>
     <br/><br/><br/><br/>
- 
-   
     
-     <% if (list) { %>
-  <p style="text-align:center;">There are <%= list.length %> products in the Cart.</p>
+  
+  
+  
+  
    <div class="row justify-content-center">
-     <div class ="row" style='width:100%'>
-       <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-      <div class="table-responsive">
-    
-     <table class="table table-bordered" style="max-width:90%;">
-      <% list.forEach(function(product){ %>
+     
+     <% if (product) { %>
+    <p>There are <%= product.length %> products in the database.</p>
+   <table class="table table-bordered" style="max-width:80%;">
+      <% product.forEach(function(product){ %>
       <tr>
         <td width="60%" rowspan="5"><img src=<%= product.shoeUrl %> 
                   alt="Screenshots of the games" width="100%"></td>
         <td >ID: <%= product.id %></td></tr>
       <tr><td >NAME: <%= product.name %></td></tr>
-      <tr><td>BRAND: <%= product.brand %></td></tr>
+      <% if (product.brand =='1') { %><tr><td>BRAND: Noodles & Pasta</td></tr> <% } %>
+     <% if (product.brand =='2') { %><tr><td>BRAND: Main Dishes</td></tr> <% } %>
+     <% if (product.brand =='3') { %><tr><td>BRAND: Dessert</td></tr> <% } %>
+     <% if (product.brand =='4') { %><tr><td>BRAND: Appetizers</td></tr> <% } %>
+     <% if (product.brand =='5') { %><tr><td>BRAND: Soup/td></tr> <% } %>
+     <% if (product.brand =='6') { %><tr><td>BRAND: Poultry & Eggs</td></tr> <% } %>
       <tr><td>PRICE: <%= product.price %></td></tr>
-      <tr><td colspan="2" align="center"><form action="/updateCart?id=<%= product.id %>" method="POST">
-           <button class="btn btn-secondary btn-lg btn-block" type="submit">
-             Delete Item 
-           </button>
-        <span>Quantity：<%= product.origin.length %> </span>
-         </form></td></tr>
-      
-  <% }); %>
-    </table></div></div>
-        <div class="col-lg-auto col-md-auto col-sm-10 col-xs-10">
-      <div class="table-responsive text-center">
-          <table class="table table-bordered" style="max-width:95%;">
-      <tr><td ><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></td></tr>
-      <tr><td>Total Price: <%= total_price %></td></tr>
-      <tr><td align="center"><form action="/clearCart" method="POST">
+      <tr><td>COLOR: <%= product.color %></td></tr>
+ <tr><td colspan="2" align="center"><form action="/addCart?id=<%= product.id %>" method="POST">
+   
          <button class="btn btn-secondary btn-lg btn-block" type="submit">
-           Clear Cart
+           Add to Cart
          </button>
-    </form></td></tr>
-    </table> </div></div></div></div>
+       </form></td></tr>
+  <% }); %>
+    </table>
     <% } else { %>
-    <p>No products in the Cart.</p>
+    <p>No products in the database.</p>
     <% } %>
     
-  
-   
-
+  </div>
     
-  <br/><br/><br/><br/>
-  
+    <br/><br/><br/><br/>
+
 </body>
 </html>
