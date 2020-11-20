@@ -49,15 +49,9 @@ router.get("/productadmin", function(request, response) {
   });
 });
 
-// RETREIVE all vendor
 
-router.get("/vendors", function(request, response) {
-  vendor.find({}, function(err, vendor_list) {
-    response.render("vendors", {
-      vendor: vendor_list
-    });
-  });
-});
+
+
 
 
 // Dashboard

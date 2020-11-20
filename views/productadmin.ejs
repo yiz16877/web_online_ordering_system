@@ -48,7 +48,7 @@
    <table class="table table-bordered" style="max-width:80%;">
       <% product.forEach(function(product){ %>
       <tr>
-        <td width="60%" rowspan="5"><img src=<%= product.shoeUrl %> 
+        <td width="60%" rowspan="4"><img src=<%= product.shoeUrl %> 
                   alt="Screenshots of the games" width="100%"></td>
         <td >ID: <%= product.id %></td></tr>
       <tr><td >NAME: <%= product.name %></td></tr>
@@ -58,7 +58,7 @@
  <tr><td colspan="2" align="center">
                <form action="/delete?id=<%= product.id %>" method="POST">
    
-         <button class="btn btn-secondary btn-lg btn-block" type="submit">
+         <button class="btn btn-secondary btn-lg btn-block btn-warning" type="submit">
            Delete
          </button>
          </form>
