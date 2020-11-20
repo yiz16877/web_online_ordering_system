@@ -37,9 +37,6 @@
 </nav>
 </div>
     <br/><br/><br/><br/>
- 
-   
-    
      <% if (list) { %>
   <p style="text-align:center;">There are <%= list.length %> products in the Cart.</p>
    <div class="row justify-content-center">
@@ -50,17 +47,18 @@
      <table class="table table-bordered" style="max-width:90%;">
       <% list.forEach(function(product){ %>
       <tr>
-        <td width="60%" rowspan="4"><img src=<%= product.shoeUrl %> 
+        <td width="60%" rowspan="5"><img src=<%= product.shoeUrl %> 
                   alt="Screenshots of the games" width="100%"></td>
         <td >ID: <%= product.id %></td></tr>
       <tr><td >NAME: <%= product.name %></td></tr>
       <tr><td>BRAND: <%= product.brand %></td></tr>
       <tr><td>PRICE: <%= product.price %></td></tr>
+      <tr><td>Quantity: <%= product.origin.length %> </td></tr>
       <tr><td colspan="2" align="center"><form action="/updateCart?id=<%= product.id %>" method="POST">
-           <button class="btn btn-secondary btn-lg btn-block" type="submit">
-             Delete Item 
-           </button>
-        <span>Quantity：<%= product.origin.length %> </span>
+        <button class="btn btn-secondary btn-lg btn-block btn-warning" type="submit">
+          Delete Item 
+        </button>
+        
          </form></td></tr>
       
   <% }); %>
@@ -71,12 +69,12 @@
       <tr><td ><h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></td></tr>
       <tr><td>Total Price: <%= total_price %></td></tr>
       <tr><td align="center"><form action="/clearCart" method="POST">
-         <button class="btn btn-secondary btn-lg btn-block" type="submit">
+         <button class="btn btn-secondary btn-lg btn-block btn-warning" type="submit">
            Clear Cart
          </button>
     </form></td></tr>
       <tr><td align="center"><form action="/payCart" method="POST">
-         <button class="btn btn-secondary btn-lg btn-block" type="submit">
+         <button class="btn btn-secondary btn-lg btn-block btn-warning" type="submit">
            Pay Cart
          </button>
     </form></td></tr>

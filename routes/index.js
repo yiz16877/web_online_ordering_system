@@ -206,6 +206,11 @@ router.post("/updateCart", function(req, res) {
   res.redirect('/myCart');
 })
 
+//Pay
+
+
+
+
 
 router.get("/addNew", function(request, response, next) {
   Product.find({}, function(err, product_list) {
