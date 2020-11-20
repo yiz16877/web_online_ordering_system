@@ -57,6 +57,10 @@ router.post('/adminregister', (req, res) => {
   if (password.length < 6) {
     errors.push({ msg: 'Password must be at least 6 characters' });
   }
+  
+  $.validator.addMethod("pwcheck", function (password) {
+    return /[\@\#\$\%\^\&\*\(\)\_\+\!]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password) && /[A-Z]/.test(password)
+ });
 
   if (errors.length > 0) {
     res.render('adminregister', {
