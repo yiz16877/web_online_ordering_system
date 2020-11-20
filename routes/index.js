@@ -50,9 +50,9 @@ router.get("/productadmin", function(request, response) {
 });
 
 
-// Dashboard
-router.get("/dashboard", ensureAuthenticated, (req, res) =>
-  res.render("dashboard", {
+// Logout
+router.get("/logout", ensureAuthenticated, (req, res) =>
+  res.render("logout", {
     user: req.user
   })
 );
