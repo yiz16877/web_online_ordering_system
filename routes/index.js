@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
 const Product = require("../models/product");
-const vendor = require("../models/vendor");
+//const vendor = require("../models/vendor");
 const cartSchema = new Schema({
   email: "",
   product_list: []
@@ -48,10 +48,6 @@ router.get("/productadmin", function(request, response) {
     });
   });
 });
-
-
-
-
 
 
 // Dashboard
