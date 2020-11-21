@@ -21,21 +21,6 @@
   </div> 
           
 
-            <div class="card-header">
-    <h3>GET /vendors/h3>
-  </div>
-      <div class="card-body">
-      <h5 class="card-title">The end point to get all vendors.</h5> 
-      
-
-  </div>
-  </div> 
-    
-    
-    
-    
-  
-    
           <div class="card-header">
     <h3>GET /:productId</h3>
   </div>
@@ -59,12 +44,6 @@
   
   
        <div class="card-header">
-    <h3>POST /vendors</h3>
-  </div>
-      <div class="card-body">
-      <h5 class="card-title">The end point to add a new vendor.</h5> 
-      
-
   </div>
   </div>
   
@@ -83,10 +62,7 @@
     <div class="card-header">
     <h3>GET /:venId/product</h3>
   </div>
-      <div class="card-body">
-      <h5 class="card-title">The end point to filter product by vendor (Still modifind) </h5> 
       
-  </div>
   </div> 
   
   
