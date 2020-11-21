@@ -3,8 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
-const Product = require("../models/product");
-//const vendor = require("../models/vendor");
+const Product = require("../models/product");//const vendor = require("../models/vendor");
 const cartSchema = new Schema({
   email: "",
   product_list: []
@@ -245,7 +244,6 @@ router.post("/delete", function(req, res) {
     });
   });
 });
-
 
 
 module.exports = router;
