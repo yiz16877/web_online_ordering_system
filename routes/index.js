@@ -193,7 +193,6 @@ router.post("/updateCart", function(req, res) {
 
 //Pay
 router.post("/payCart", function(req, res) {
-  console.log('Start')
   Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
       my_cart = new Cart();
@@ -201,15 +200,13 @@ router.post("/payCart", function(req, res) {
       my_cart.save();
     } else {
       my_cart = cart_item[0];
-      res.render("cart", {
-        successful_message: "Successful Payment!"
-      });
     }
-    
-    console.log('CART')
   });
   my_cart.product_list = [];
   my_cart.save();
+  res.render("cart", {
+        successful_message: "Successful Payment!"
+      });
   res.redirect("/myCart");
 });
 
