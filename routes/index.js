@@ -1,16 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
-const Product = require("../models/product");//const vendor = require("../models/vendor");
+const Product = require("../models/product"); //const vendor = require("../models/vendor");
 const cartSchema = new Schema({
   email: "",
   product_list: []
-})
+});
 var my_cart;
-var Cart = mongoose.model('Cart', cartSchema);
-
+var Cart = mongoose.model("Cart", cartSchema);
 
 // Welcome Page
 router.get("/", forwardAuthenticated, (req, res) => res.render("welcome"));
@@ -31,7 +30,7 @@ router.get("/product", function(request, response) {
 });
 
 router.get("/producttype", function(request, response) {
-  Product.find({brand:request.query.type}, function(err, product_list) {
+  Product.find({ brand: request.query.type }, function(err, product_list) {
     response.render("producttype", {
       product: product_list
     });
@@ -47,7 +46,6 @@ router.get("/productadmin", function(request, response) {
     });
   });
 });
-
 
 // Logout
 router.get("/logout", ensureAuthenticated, (req, res) =>
@@ -70,7 +68,7 @@ router.get("/mine", ensureAuthenticated, (req, res) =>
 
 //Cart
 router.post("/addCart", function(request, response) {
-  Cart.find({email: request.user.email}, function(err, cart_item) {
+  Cart.find({ email: request.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
       my_cart = new Cart();
       my_cart.email = request.user.email;
@@ -78,9 +76,9 @@ router.post("/addCart", function(request, response) {
     } else {
       my_cart = cart_item[0];
     }
-  })
+  });
   let pid = request.query.id;
-  Product.findOne({id: pid}, function(err, product) {
+  Product.findOne({ id: pid }, function(err, product) {
     my_cart.product_list.push({
       id: product.id,
       name: product.name,
@@ -91,19 +89,18 @@ router.post("/addCart", function(request, response) {
     });
     //my_cart.save();
     my_cart.save(function(err, user) {
-        if (err) {
-            console.log(err);
-            response.send(400, 'Bad Request');
-        }
-        else {
-          response.redirect('/product');
-        }
+      if (err) {
+        console.log(err);
+        response.send(400, "Bad Request");
+      } else {
+        response.redirect("/product");
+      }
     });
-  })
+  });
 });
 
 router.get("/myCart", function(req, res) {
-  Cart.find({email: req.user.email}, function(err, cart_item) {
+  Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
       my_cart = new Cart();
       my_cart.email = req.user.email;
@@ -111,55 +108,54 @@ router.get("/myCart", function(req, res) {
     } else {
       my_cart = cart_item[0];
     }
-  })
-  Cart.find({email: req.user.email}, function(err, productarray){
+  });
+  Cart.find({ email: req.user.email }, function(err, productarray) {
     let total_price = 0;
     if (productarray.length > 0) {
       productarray[0].product_list.forEach(function(product) {
         total_price = total_price + product.price;
-      })
-       
-    let tempArr = [];
-		let  afterData=[]
-		for (let i = 0; i < productarray[0].product_list.length; i++) {
-			if (tempArr.indexOf(productarray[0].product_list[i].id) === -1) {
-				afterData.push({
-          id: productarray[0].product_list[i].id,
-					name: productarray[0].product_list[i].name,
-          brand: productarray[0].product_list[i].brand,
-					price: productarray[0].product_list[i].price,
-          color: productarray[0].product_list[i].color,
-					origin: [productarray[0].product_list[i]]
-				});
-				tempArr.push(productarray[0].product_list[i].id);
-			} else {
-				for (let j = 0; j < afterData.length; j++) {
-					if (afterData[j].id == productarray[0].product_list[i].id) {
-						afterData[j].origin.push(productarray[0].product_list[i]);
-						break;
-					}
-				}
-			}
-		}
-  
+      });
+
+      let tempArr = [];
+      let afterData = [];
+      for (let i = 0; i < productarray[0].product_list.length; i++) {
+        if (tempArr.indexOf(productarray[0].product_list[i].id) === -1) {
+          afterData.push({
+            id: productarray[0].product_list[i].id,
+            name: productarray[0].product_list[i].name,
+            brand: productarray[0].product_list[i].brand,
+            price: productarray[0].product_list[i].price,
+            color: productarray[0].product_list[i].color,
+            origin: [productarray[0].product_list[i]]
+          });
+          tempArr.push(productarray[0].product_list[i].id);
+        } else {
+          for (let j = 0; j < afterData.length; j++) {
+            if (afterData[j].id == productarray[0].product_list[i].id) {
+              afterData[j].origin.push(productarray[0].product_list[i]);
+              break;
+            }
+          }
+        }
+      }
+
       res.render("cart", {
         list: afterData,
         total_price: total_price
       });
-    }
-    else {
+    } else {
       res.render("cart", {
         list: [],
         total_price: total_price
       });
     }
-    
+
     //res.send(productarray);
-  })
-})
+  });
+});
 
 router.post("/clearCart", function(req, res) {
-  Cart.find({email: req.user.email}, function(err, cart_item) {
+  Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
       my_cart = new Cart();
       my_cart.email = req.user.email;
@@ -167,14 +163,14 @@ router.post("/clearCart", function(req, res) {
     } else {
       my_cart = cart_item[0];
     }
-  })
+  });
   my_cart.product_list = [];
   my_cart.save();
-  res.redirect('/myCart');
-})
+  res.redirect("/myCart");
+});
 
 router.post("/updateCart", function(req, res) {
-  Cart.find({email: req.user.email}, function(err, cart_item) {
+  Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
       my_cart = new Cart();
       my_cart.email = req.user.email;
@@ -182,7 +178,7 @@ router.post("/updateCart", function(req, res) {
     } else {
       my_cart = cart_item[0];
     }
-  })
+  });
   let pid = req.query.id;
   let index = 0;
   for (index = 0; index < my_cart.product_list.length; index++) {
@@ -192,12 +188,12 @@ router.post("/updateCart", function(req, res) {
       break;
     }
   }
-  res.redirect('/myCart');
-})
+  res.redirect("/myCart");
+});
 
 //Pay
 router.post("/payCart", function(req, res) {
-  Cart.find({email: req.user.email}, function(err, cart_item) {
+  Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
       my_cart = new Cart();
       my_cart.email = req.user.email;
@@ -205,18 +201,14 @@ router.post("/payCart", function(req, res) {
     } else {
       my_cart = cart_item[0];
     }
-  })
+  });
   my_cart.product_list = [];
   my_cart.save();
-  res.render("", {
-        msg: "Successful Payment!",
+  res.render("cart", {
+        total_price_fake: "Successful Payment!"
       });
-  res.redirect('/myCart');
-})
-
-
-
-
+  res.redirect("/myCart");
+});
 
 router.get("/addNew", function(request, response, next) {
   Product.find({}, function(err, product_list) {
@@ -238,29 +230,25 @@ router.get("/addOne", function(request, response, next) {
   });
 });
 
-
-
 router.post("/addone", function(req, res) {
   let product = new Product(req.body);
   product.save();
-  
-  res.redirect('/productadmin');
-});
 
+  res.redirect("/productadmin");
+});
 
 //DELETE
 router.post("/delete", function(req, res) {
-  Product.findOne({id: req.query.id}, function(err, product) {
+  Product.findOne({ id: req.query.id }, function(err, product) {
     product.remove(function(err) {
       if (err) {
         res.status(500).send(err);
       } else {
         res.status(204).send("removed");
-        res.redirect('/productadmin');
+        res.redirect("/productadmin");
       }
     });
   });
 });
-
 
 module.exports = router;
