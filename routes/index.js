@@ -99,6 +99,8 @@ router.post("/addCart", function(request, response) {
   });
 });
 
+var g_list = []
+var g_total_price = -1
 router.get("/myCart", function(req, res) {
   Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
@@ -139,15 +141,11 @@ router.get("/myCart", function(req, res) {
         }
       }
 
-      res.render("cart", {
-        list: afterData,
-        total_price: total_price
-      });
+      g_list = afterData
+      g_total_price = total_price
     } else {
-      res.render("cart", {
-        list: [],
-        total_price: total_price
-      });
+      g_list = []
+      g_total_price = total_price
     }
 
     //res.send(productarray);
@@ -191,6 +189,15 @@ router.post("/updateCart", function(req, res) {
   res.redirect("/myCart");
 });
 
+var g_message = ""
+function cartRender(res) {
+  res.render("cart", {
+        successful_message: g_message,
+        list: g_list,
+        total_price: g_total_price
+      });
+}
+
 //Pay
 router.post("/payCart", function(req, res) {
   Cart.find({ email: req.user.email }, function(err, cart_item) {
@@ -204,9 +211,7 @@ router.post("/payCart", function(req, res) {
   });
   my_cart.product_list = [];
   my_cart.save();
-  res.render("cart", {
-        successful_message: "Successful Payment!"
-      });
+  g_message = "Successful Payment!"
   res.redirect("/myCart");
 });
 
