@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shoes</title>
+  <title>Pitts Reastaruant</title>
   <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
@@ -36,10 +36,6 @@
 </nav>
 </div>
     <br/><br/><br/><br/>
-    
-  
-  
-  
   
    <div class="row justify-content-center">
      
@@ -48,11 +44,11 @@
    <table class="table table-bordered" style="max-width:80%;">
       <% product.forEach(function(product){ %>
       <tr>
-        <td width="60%" rowspan="4"><img src=<%= product.shoeUrl %> 
+        <td width="60%" rowspan="4"><img src=<%= product.Url %> 
                   alt="Screenshots of the games" width="100%"></td>
         <td >ID: <%= product.id %></td></tr>
       <tr><td >NAME: <%= product.name %></td></tr>
-      <tr><td>BRAND: <%= product.brand %></td></tr>
+      <tr><td>TYPE: <%= product.type %></td></tr>
       <tr><td>PRICE: <%= product.price %></td></tr>
      
  <tr><td colspan="2" align="center">

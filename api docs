@@ -82,7 +82,7 @@
     <h3>PUT /:productId</h3>
   </div>
       <div class="card-body">
-      <h5 class="card-title">The end point to UPDATA chosen shoes.</h5> 
+      <h5 class="card-title">The end point to UPDATA chosen cuisine.</h5> 
       
   </div>
   </div> 

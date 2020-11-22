@@ -87,10 +87,10 @@ router.post("/addCart", function(request, response) {
     my_cart.product_list.push({
       id: product.id,
       name: product.name,
-      brand: product.brand,
+      type: product.type,
       price: product.price,
       color: product.color,
-      shoeUrl: product.shoeUrl
+      Url: product.Url
     });
     //my_cart.save();
     my_cart.save(function(err, user) {

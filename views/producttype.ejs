@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shoes</title>
+  <title>Pitts Reastaruant</title>
   <link 
       rel="stylesheet" 
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
@@ -49,16 +49,16 @@
    <table class="table table-bordered" style="max-width:80%;">
       <% product.forEach(function(product){ %>
       <tr>
-        <td width="60%" rowspan="4"><img src=<%= product.shoeUrl %> 
+        <td width="60%" rowspan="4"><img src=<%= product.Url %> 
                   alt="Screenshots of the games" width="100%"></td>
         <td >ID: <%= product.id %></td></tr>
       <tr><td >NAME: <%= product.name %></td></tr>
-      <% if (product.brand =='1') { %><tr><td>BRAND: Noodles & Pasta</td></tr> <% } %>
-     <% if (product.brand =='2') { %><tr><td>BRAND: Main Dishes</td></tr> <% } %>
-     <% if (product.brand =='3') { %><tr><td>BRAND: Dessert</td></tr> <% } %>
-     <% if (product.brand =='4') { %><tr><td>BRAND: Appetizers</td></tr> <% } %>
-     <% if (product.brand =='5') { %><tr><td>BRAND: Soup/td></tr> <% } %>
-     <% if (product.brand =='6') { %><tr><td>BRAND: Poultry & Eggs</td></tr> <% } %>
+      <% if (product.type =='1') { %><tr><td>TYPE: Noodles & Pasta</td></tr> <% } %>
+     <% if (product.type =='2') { %><tr><td>TYPE: Main Dishes</td></tr> <% } %>
+     <% if (product.type =='3') { %><tr><td>TYPE: Dessert</td></tr> <% } %>
+     <% if (product.type =='4') { %><tr><td>TYPE: Appetizers</td></tr> <% } %>
+     <% if (product.type =='5') { %><tr><td>TYPE: Soup/td></tr> <% } %>
+     <% if (product.type =='6') { %><tr><td>TYPE: Poultry & Eggs</td></tr> <% } %>
       <tr><td>PRICE: <%= product.price %></td></tr>
       
  <tr><td colspan="2" align="center"><form action="/addCart?id=<%= product.id %>" method="POST">
