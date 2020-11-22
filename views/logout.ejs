@@ -1,12 +1,43 @@
+<style>
+  .card,.card_body{
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    top:130px;
+    color: #fff;
+  }
+  
+  h1 {
+    color: white;
+  }
+</style>
+
+<div class="video-section">
+      <div class="video-wrapper">
+        <div class="video-container">
+          <video
+            autoplay=""
+            loop=""
+            muted=""
+            style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; 
+                   transform: translate(-50%, -50%); visibility: visible;
+                   width:100%"
+          >
+            <source
+              src="https://cdn.glitch.com/add7b3c2-cd14-44ba-abf1-0a157e78102c%2Fcoverr--06-20-chef-cooking-a-dish-on-a-restaurant-12-4165.mp4?v=1605919048561"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+    </div>
+
 <br/><br/>
 <div class="d-flex justify-content-center align-items-center">
 <div class="card text-center" style="width:50%">
-  <div class="card-header">
-    Log Out Notification
-  </div>
   <div class="card-body">
-    <h1 class="card-title">Leave?</h1>
-   <p class="card-text">See you later, <%= user.name %></p>
+     </br>
+   <h1 class="card-text">See you later, <%= user.name %></h1>
+    </br>
    <a href="/users/logout" class="btn btn-secondary">Logout</a>
   </div>
 </div></div>
