@@ -20,6 +20,11 @@ router.get("/index", function(req, res) {
   res.render("index");
 });
 
+//pay page
+router.get("/checkout", function(req, res) {
+  res.render("checkout");
+});
+
 // RETREIVE all product
 
 router.get("/product", function(request, response) {
@@ -208,6 +213,7 @@ router.post("/payCart", function(req, res) {
   })
   my_cart.product_list = [];
   my_cart.save();
+  //window.alert('Successful payment')
   res.redirect('/myCart');
 })
 
