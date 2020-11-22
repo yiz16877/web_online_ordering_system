@@ -20,11 +20,6 @@ router.get("/index", function(req, res) {
   res.render("index");
 });
 
-//pay page
-router.get("/checkout", function(req, res) {
-  res.render("checkout");
-});
-
 // RETREIVE all product
 
 router.get("/product", function(request, response) {
@@ -258,7 +253,7 @@ router.post("/delete", function(req, res) {
       if (err) {
         res.status(500).send(err);
       } else {
-        //res.status(204).send("removed");
+        res.status(204).send("removed");
         res.redirect('/productadmin');
       }
     });
