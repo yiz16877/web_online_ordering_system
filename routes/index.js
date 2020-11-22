@@ -35,7 +35,7 @@ router.get("/product", function(request, response) {
 });
 
 router.get("/producttype", function(request, response) {
-  Product.find({ brand: request.query.type }, function(err, product_list) {
+  Product.find({ type: request.query.type }, function(err, product_list) {
     response.render("producttype", {
       product: product_list
     });
@@ -129,7 +129,7 @@ router.get("/myCart", function(req, res) {
           afterData.push({
             id: productarray[0].product_list[i].id,
             name: productarray[0].product_list[i].name,
-            brand: productarray[0].product_list[i].brand,
+            type: productarray[0].product_list[i].type,
             price: productarray[0].product_list[i].price,
             color: productarray[0].product_list[i].color,
             origin: [productarray[0].product_list[i]]
@@ -255,6 +255,10 @@ router.post("/delete", function(req, res) {
       }
     });
   });
+});
+
+router.get("/type", function(req, res) {
+  res.render("type");
 });
 
 module.exports = router;
