@@ -208,7 +208,7 @@ router.post("/payCart", function(req, res) {
   })
   my_cart.product_list = [];
   my_cart.save();
-  // res.json('{ success: true }')
+  res.json('{ success: true }')
   res.redirect('/myCart');
 })
 
