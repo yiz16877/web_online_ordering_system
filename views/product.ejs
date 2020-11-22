@@ -45,7 +45,7 @@
    <div class="row justify-content-center">
      
      <% if (product) { %>
-    <p>There are <%= product.length %> cuisine in the menu.</p>
+    <p>There are <%= product.length %> cuisines in the menu.</p>
    <table class="table table-bordered" style="max-width:80%;">
       <% product.forEach(function(product){ %>
       <tr>
@@ -53,23 +53,27 @@
                   alt="Screenshots of the games" width="100%"></td>
         <td >ID: <%= product.id %></td></tr>
       <tr><td >NAME: <%= product.name %></td></tr>
-      <tr><td>BRAND: <%= product.brand %></td></tr>
+      <% if (product.brand =='1') { %><tr><td>BRAND: Noodles & Pasta</td></tr> <% } %>
+     <% if (product.brand =='2') { %><tr><td>BRAND: Main Dishes</td></tr> <% } %>
+     <% if (product.brand =='3') { %><tr><td>BRAND: Dessert</td></tr> <% } %>
+     <% if (product.brand =='4') { %><tr><td>BRAND: Appetizers</td></tr> <% } %>
+     <% if (product.brand =='5') { %><tr><td>BRAND: Soup</td></tr> <% } %>
+     <% if (product.brand =='6') { %><tr><td>BRAND: Poultry & Eggs</td></tr> <% } %>
       <tr><td>PRICE: <%= product.price %></td></tr>
-
+      
  <tr><td colspan="2" align="center"><form action="/addCart?id=<%= product.id %>" method="POST">
    
-         <button class="btn btn-secondary btn-lg btn-block btn-warning" type="submit">
+         <button class="btn btn-warning btn-secondary btn-lg btn-block" type="submit">
            Add to Cart
          </button>
        </form></td></tr>
   <% }); %>
     </table>
     <% } else { %>
-    <p>No products in the database.</p>
+    <p>No cuisines in the menu.</p>
     <% } %>
     
   </div>
-    
     <br/><br/><br/><br/>
 
 </body>
