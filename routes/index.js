@@ -196,6 +196,20 @@ router.post("/updateCart", function(req, res) {
 })
 
 //Pay
+router.post("/payCart", function(req, res) {
+  Cart.find({email: req.user.email}, function(err, cart_item) {
+    if (!cart_item.length) {
+      my_cart = new Cart();
+      my_cart.email = req.user.email;
+      my_cart.save();
+    } else {
+      my_cart = cart_item[0];
+    }
+  })
+  my_cart.product_list = [];
+  my_cart.save();
+  res.redirect('/views/pay');
+})
 
 
 
