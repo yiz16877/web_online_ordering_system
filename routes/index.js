@@ -9,6 +9,7 @@ const cartSchema = new Schema({
   product_list: []
 });
 var my_cart;
+var successful_message = ""
 var Cart = mongoose.model("Cart", cartSchema);
 
 // Welcome Page
@@ -99,8 +100,6 @@ router.post("/addCart", function(request, response) {
   });
 });
 
-var g_list = []
-var g_total_price = -1
 router.get("/myCart", function(req, res) {
   Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
@@ -141,11 +140,19 @@ router.get("/myCart", function(req, res) {
         }
       }
 
-      g_list = afterData
-      g_total_price = total_price
+//     we will set this global variable as "" when customer starts to order dishes
+      successful_message = ""
+      res.render("cart", {
+        successful_message: successful_message,
+        list: afterData,
+        total_price: total_price
+      });
     } else {
-      g_list = []
-      g_total_price = total_price
+      res.render("cart", {
+        successful_message: successful_message,
+        list: [],
+        total_price: total_price
+      });
     }
 
     //res.send(productarray);
@@ -189,15 +196,6 @@ router.post("/updateCart", function(req, res) {
   res.redirect("/myCart");
 });
 
-var g_message = ""
-function cartRender(res) {
-  res.render("cart", {
-        successful_message: g_message,
-        list: g_list,
-        total_price: g_total_price
-      });
-}
-
 //Pay
 router.post("/payCart", function(req, res) {
   Cart.find({ email: req.user.email }, function(err, cart_item) {
@@ -211,7 +209,7 @@ router.post("/payCart", function(req, res) {
   });
   my_cart.product_list = [];
   my_cart.save();
-  g_message = "Successful Payment!"
+  successful_message = "Successful Payment!"
   res.redirect("/myCart");
 });
 
