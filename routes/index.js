@@ -10,7 +10,7 @@ const cartSchema = new Schema({
 })
 var my_cart;
 var Cart = mongoose.model('Cart', cartSchema);
-const popupS = require('popups');
+// const popupS = require('popups');
 
 
 // Welcome Page
@@ -209,6 +209,7 @@ router.post("/payCart", function(req, res) {
   })
   my_cart.product_list = [];
   my_cart.save();
+  res.json('{ success: true }')
   //window.alert('Successful payment')
 //   popupS.alert({
 //     content: 'Hello World!'
