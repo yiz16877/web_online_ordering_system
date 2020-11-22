@@ -9,8 +9,12 @@ const cartSchema = new Schema({
   product_list: []
 });
 var my_cart;
-var successful_message = ""
+var payment_message = "Please Make Your Payment"
 var Cart = mongoose.model("Cart", cartSchema);
+
+function set_payment_message(msg) {
+  payment_message = msg
+}
 
 // Welcome Page
 router.get("/", forwardAuthenticated, (req, res) => res.render("welcome"));
@@ -97,6 +101,7 @@ router.post("/addCart", function(request, response) {
         response.redirect("/product");
       }
     });
+    set_payment_message("Please Make Your Payment")
   });
 });
 
@@ -140,16 +145,14 @@ router.get("/myCart", function(req, res) {
         }
       }
 
-//     we will set this global variable as "" when customer starts to order dishes
-      successful_message = ""
       res.render("cart", {
-        successful_message: successful_message,
+        payment_message: payment_message,
         list: afterData,
         total_price: total_price
       });
     } else {
       res.render("cart", {
-        successful_message: successful_message,
+        payment_message: payment_message,
         list: [],
         total_price: total_price
       });
@@ -209,7 +212,7 @@ router.post("/payCart", function(req, res) {
   });
   my_cart.product_list = [];
   my_cart.save();
-  successful_message = "Successful Payment!"
+  set_payment_message("Successful Payment, enjoy!")
   res.redirect("/myCart");
 });
 
