@@ -3,17 +3,17 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
-const Product = require("../models/product"); 
+const Product = require("../models/product");
 const cartSchema = new Schema({
   email: "",
   product_list: []
 });
 var my_cart;
-var payment_message = "Please Make Your Payment"
+var payment_message = "Please Make Your Payment";
 var Cart = mongoose.model("Cart", cartSchema);
 
 function set_payment_message(msg) {
-  payment_message = msg
+  payment_message = msg;
 }
 
 // Welcome Page
@@ -30,7 +30,7 @@ router.get("/pay", function(req, res) {
   res.render("pay");
 });
 
-// RETREIVE all product
+// all product
 
 router.get("/product", function(request, response) {
   Product.find({}, function(err, product_list) {
@@ -40,6 +40,7 @@ router.get("/product", function(request, response) {
   });
 });
 
+// product type
 router.get("/producttype", function(request, response) {
   Product.find({ type: request.query.type }, function(err, product_list) {
     response.render("producttype", {
@@ -99,10 +100,10 @@ router.post("/addCart", function(request, response) {
       //   console.log(err);
       //   response.send(400, "Bad Request");
       // } else {
-        response.redirect("/product");
+      response.redirect("/product");
       // }
     });
-    set_payment_message("Please Make Your Payment")
+    set_payment_message("Please Make Your Payment");
   });
 });
 
@@ -203,8 +204,7 @@ router.get("/getTotalPrice", function(req, res) {
 
       res.render("pay", {
         total_price: total_price
-      }
-      );
+      });
     } else {
       res.render("pay", {
         total_price: total_price
@@ -229,7 +229,7 @@ router.post("/clearCart", function(req, res) {
   my_cart.save();
   res.redirect("/myCart");
 });
-
+//update cart
 router.post("/updateCart", function(req, res) {
   Cart.find({ email: req.user.email }, function(err, cart_item) {
     if (!cart_item.length) {
@@ -265,30 +265,20 @@ router.post("/payCart", function(req, res) {
   });
   my_cart.product_list = [];
   my_cart.save();
-  set_payment_message("Successful Payment, enjoy!")
+  set_payment_message("Successful Payment, enjoy!");
   res.redirect("/myCart");
 });
 
-router.get("/addNew", function(request, response, next) {
-  Product.find({}, function(err, product_list) {
-    try {
-      response.render("addNew", { foot: product_list });
-    } catch (err) {
-      next(err);
-    }
-  });
-});
-
-router.get("/addOne", function(request, response, next) {
-  Product.find({}, function(err, product_list) {
-    try {
-      response.render("addNew", { foot: product_list });
-    } catch (err) {
-      next(err);
-    }
-  });
-});
-
+// router.get("/addNew", function(request, response, next) {
+//   Product.find({}, function(err, product_list) {
+//     try {
+//       response.render("addNew", { foot: product_list });
+//     } catch (err) {
+//       next(err);
+//     }
+//   });
+// });
+//admin add
 router.post("/addone", function(req, res) {
   let product = new Product(req.body);
   product.save();
@@ -296,15 +286,15 @@ router.post("/addone", function(req, res) {
   res.redirect("/productadmin");
 });
 
-//DELETE
+//admin DELETE
 router.post("/delete", function(req, res) {
   Product.findOne({ id: req.query.id }, function(err, product) {
     product.remove(function(err) {
       // if (err) {
       //   res.status(500).send(err);
       // } else {
-        //res.status(204).send("removed");
-        res.redirect("/productadmin");
+      //res.status(204).send("removed");
+      res.redirect("/productadmin");
       // }
     });
   });

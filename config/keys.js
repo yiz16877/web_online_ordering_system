@@ -1,4 +1,3 @@
 module.exports = {
-  mongoURI:
-    "env.key"
+  mongoURI: "env.key"
 };
