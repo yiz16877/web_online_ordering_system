@@ -33,6 +33,10 @@ router.post('/register', (req, res) => {
  if (password.search(/[a-z]/i) < 0) {
         errors.push({msg:'Your password must contain at least one letter.'});
     }
+   if (password.length < 6) {
+        errors.push({msg:'Your password must longer than 6.'});
+    }
+  
   
   if (errors.length > 0) {
     res.render('register', {
