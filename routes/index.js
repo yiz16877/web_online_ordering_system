@@ -95,12 +95,12 @@ router.post("/addCart", function(request, response) {
     });
     //my_cart.save();
     my_cart.save(function(err, user) {
-      if (err) {
-        console.log(err);
-        response.send(400, "Bad Request");
-      } else {
+      // if (err) {
+      //   console.log(err);
+      //   response.send(400, "Bad Request");
+      // } else {
         response.redirect("/product");
-      }
+      // }
     });
     set_payment_message("Please Make Your Payment")
   });
@@ -300,12 +300,12 @@ router.post("/addone", function(req, res) {
 router.post("/delete", function(req, res) {
   Product.findOne({ id: req.query.id }, function(err, product) {
     product.remove(function(err) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
+      // if (err) {
+      //   res.status(500).send(err);
+      // } else {
         res.status(204).send("removed");
         res.redirect("/productadmin");
-      }
+      // }
     });
   });
 });
