@@ -90,7 +90,6 @@ router.post("/addCart", function(request, response) {
       name: product.name,
       type: product.type,
       price: product.price,
-      color: product.color,
       Url: product.Url
     });
     //my_cart.save();
@@ -184,10 +183,8 @@ router.get("/getTotalPrice", function(req, res) {
           afterData.push({
             id: productarray[0].product_list[i].id,
             name: productarray[0].product_list[i].name,
-            brand: productarray[0].product_list[i].brand,
-            price: productarray[0].product_list[i].price,
-            color: productarray[0].product_list[i].color,
-            origin: [productarray[0].product_list[i]]
+            type: productarray[0].product_list[i].type,
+            price: productarray[0].product_list[i].price
           });
           tempArr.push(productarray[0].product_list[i].id);
         } else {
