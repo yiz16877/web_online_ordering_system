@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const { ensureAuthenticated, forwardAuthenticated } = require("../config/auth");
-const Product = require("../models/product"); //const vendor = require("../models/vendor");
+const Product = require("../models/product"); 
 const cartSchema = new Schema({
   email: "",
   product_list: []
@@ -59,10 +59,6 @@ router.get("/logout", ensureAuthenticated, (req, res) =>
   })
 );
 
-//edit profile
-router.get("/edit", function(req, res) {
-  res.render("edit");
-});
 
 //View Profile
 router.get("/mine", ensureAuthenticated, (req, res) =>
@@ -157,8 +153,6 @@ router.get("/myCart", function(req, res) {
         total_price: total_price
       });
     }
-
-    //res.send(productarray);
   });
 });
 

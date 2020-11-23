@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Pitts Reastaruant</title>
-  <link 
-      rel="stylesheet" 
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-      crossorigin="anonymous"
-  />
-</head>
-<body>
-  
-  
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello Customers!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="public/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+  </head>
+  <body>
   <div class="container-fluid">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light text-light bg-warning fixed-top">
   
-  <h2 style="color:white;">&nbsp;&nbsp;Pitts Restaurant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+  <h2 style="color:black;">&nbsp;&nbsp;Pitts Restaurant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -24,14 +22,14 @@
     
   <div class="collapse navbar-collapse" id="navbarResponsive">      
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+      <li class="nav-item"><a class="nav-link active" href="/index">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="/product">Menu</a></li>
-      <li class="nav-item"><a class="nav-link" href="/type">Type</a></li>
     </ul>
         
      <ul class="navbar-nav ml-auto"> 
-          <li class="nav-item"><a class="nav-link" href="/myCart">My Cart</a ></li>
-          <li class="nav-item"><a class="nav-link  active" href="/mine">My Profile</a ></li>
+         <li class="nav-item"><a class="nav-link" href="/myCart">My Cart</a ></li>
+         <li class="nav-item"><a class="nav-link" href="/getTotalPrice">Pay</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mine">My Profile</a ></li>
           <li class="nav-item"><a class="nav-link" href="/logout">Log out</a></li>
     </ul>
  </div>
@@ -44,52 +42,61 @@
             <header>
                 <h1>Pay Here</h1>
             </header>
+           <br/><br/><br/>
             <main>
-                <section class="options">
-                    
-                    <div class="input-group">
-                        <input type="number" class="cost" placeholder="How much was the bill?">
-                    </div>
-                    
-                    <div class="input-group">
-                        <select class="service" required>
-                            <option disabled selected>How was your service?</option>
-                            <option value="5">5 - Amazing</option>
-                            <option value="4">4 - Great</option>
-                            <option value="3">3 - Good</option>
-                            <option value="2">2 - Alright</option>
-                            <option value="1">1 - Terrible</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" class="people" placeholder="How many are sharing the bill?">
-                    </div>
-                    <div class="input-group">
-                        <select class="generosity" required>
-                            <option disabled selected>How generous you are?</option>
-                            <option value="1">1 - Above averge</option>
-                            <option value="2">2 - Averge</option>
-                            <option value="3">3 - Below averge</option>
-                        </select>
-                    </div>
-                </section>
-                <section class="tip-wrap">
+              <table class="table table-bordered" style="max-width:100%;">
+                <tr><td><strong><div class="input-group">
+                        <label for="id">Bill:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" id="cost" readonly value=<%= total_price %>>
+                    </div></strong></td></tr>
+                
+                <tr><td><strong><div class="input-group">
+                        <label for="tip">Tip:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" id="tip">
+                    </div></strong></td></tr>
+                <tr><td><strong><button id = "payment" class="btn btn-secondary btn-lg btn-block btn-warning" onclick = "get_total()">
+                 Confirm Tip
+                </button>  </strong></td></tr> 
+                
+                <tr><td><strong><section class="tip-wrap">
                     <p>You should pay</p>
-                    <h3 class="tip">0</h3>
-                </section>
+                    <body onload="get_total()">
+                      <h3><span id="total"></span></h3>
+                    </body>
+                </section></strong></td></tr>
+                
+                
+               
+              </table>
             </main>
-            <footer>
-                <button id="tip-btn">Pay</button>
-            </footer>
+              
+            <tr><td align="center"><form action="/payCart" method="POST">
+        
+        <button id = "payment" class="btn btn-secondary btn-lg btn-block btn-warning" type="submit">
+           Pay Cart
+        </button>   
+              
+
+        
+    </form></td></tr>
         </div>
     </div>
-
-  
-  <button class="btn btn-secondary btn-lg btn-block" onclick="location.href='/index'" type="button">
-         Back to Home Page</button>
+    </br>
+  <footer><button class="btn btn-secondary btn-lg btn-block btn-warning" onclick="location.href='/index'" type="button">
+           Back to Home Page
+    </button></footer>
+ 
 
   
   <br/><br/><br/><br/>
-
   </body>
 </html>
+<script>
+  function get_total() {
+    cost = document.getElementById("cost").value
+    tip = document.getElementById("tip").value
+    total = parseFloat(cost) + parseFloat(tip)
+    
+    document.getElementById("total").innerHTML = total;
+  }
+</script>
