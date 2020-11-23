@@ -24,6 +24,12 @@ router.get("/index", function(req, res) {
   res.render("index");
 });
 
+//pay
+
+router.get("/pay", function(req, res) {
+  res.render("pay");
+});
+
 // RETREIVE all product
 
 router.get("/product", function(request, response) {
@@ -58,7 +64,6 @@ router.get("/logout", ensureAuthenticated, (req, res) =>
     user: req.user
   })
 );
-
 
 //View Profile
 router.get("/mine", ensureAuthenticated, (req, res) =>
@@ -153,6 +158,60 @@ router.get("/myCart", function(req, res) {
         total_price: total_price
       });
     }
+  });
+});
+
+router.get("/getTotalPrice", function(req, res) {
+  Cart.find({ email: req.user.email }, function(err, cart_item) {
+    if (!cart_item.length) {
+      my_cart = new Cart();
+      my_cart.email = req.user.email;
+      my_cart.save();
+    } else {
+      my_cart = cart_item[0];
+    }
+  });
+  Cart.find({ email: req.user.email }, function(err, productarray) {
+    let total_price = 0;
+    if (productarray.length > 0) {
+      productarray[0].product_list.forEach(function(product) {
+        total_price = total_price + product.price;
+      });
+
+      let tempArr = [];
+      let afterData = [];
+      for (let i = 0; i < productarray[0].product_list.length; i++) {
+        if (tempArr.indexOf(productarray[0].product_list[i].id) === -1) {
+          afterData.push({
+            id: productarray[0].product_list[i].id,
+            name: productarray[0].product_list[i].name,
+            brand: productarray[0].product_list[i].brand,
+            price: productarray[0].product_list[i].price,
+            color: productarray[0].product_list[i].color,
+            origin: [productarray[0].product_list[i]]
+          });
+          tempArr.push(productarray[0].product_list[i].id);
+        } else {
+          for (let j = 0; j < afterData.length; j++) {
+            if (afterData[j].id == productarray[0].product_list[i].id) {
+              afterData[j].origin.push(productarray[0].product_list[i]);
+              break;
+            }
+          }
+        }
+      }
+
+      res.render("pay", {
+        total_price: total_price
+      }
+      );
+    } else {
+      res.render("pay", {
+        total_price: total_price
+      });
+    }
+
+    //res.send(productarray);
   });
 });
 
