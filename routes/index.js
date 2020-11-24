@@ -96,12 +96,7 @@ router.post("/addCart", function(request, response) {
     });
     //my_cart.save();
     my_cart.save(function(err, user) {
-      // if (err) {
-      //   console.log(err);
-      //   response.send(400, "Bad Request");
-      // } else {
       response.redirect("/product");
-      // }
     });
     set_payment_message("Please Make Your Payment");
   });
@@ -268,17 +263,17 @@ router.post("/payCart", function(req, res) {
   set_payment_message("Successful Payment, enjoy!");
   res.redirect("/myCart");
 });
-
-// router.get("/addNew", function(request, response, next) {
-//   Product.find({}, function(err, product_list) {
-//     try {
-//       response.render("addNew", { foot: product_list });
-//     } catch (err) {
-//       next(err);
-//     }
-//   });
-// });
-//admin add
+//admin: enter admin page
+router.get("/addNew", function(request, response, next) {
+  Product.find({}, function(err, product_list) {
+    try {
+      response.render("addNew", { foot: product_list });
+    } catch (err) {
+      next(err);
+    }
+  });
+});
+//admin add prduct
 router.post("/addone", function(req, res) {
   let product = new Product(req.body);
   product.save();
