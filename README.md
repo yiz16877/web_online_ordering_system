@@ -1,7 +1,7 @@
 # Online Order System for restaurant
 
 A server that serves a webpage, its resources, and some data
-### Descrptions of using
+##Descrptions of using
 
 #### Register:
 
@@ -13,34 +13,31 @@ A server that serves a webpage, its resources, and some data
 
 #### User Login:
 
-- Sign-up: Create account with username, email, password. If success, redirect to the Find Page.
-- Log-in: Log-in with username or email. If success, redirect to the Find Page, else show error.
-- Profile: Show users historical comments. Modify their users' name or password.
-- Content: Show restaurants details like OpenHour, Pictures, etc.
+- Login with their username, email and password. When you login, redirect to the homepage of our system.
+- Users can modify their information in My profile
 
 ---
 
-On the front-end,
+### Admin Login:
+- Login with admin@pitt.edu and password is adminadmin. When you login admin redirect to the homepage of our system.
+
+---
+
+### Front End:
 
 - Edit `views/index.html` to change the content of the webpage
-- `public/client.js` is the javacript that runs when you load the webpage
+- `routes/user.js` and `routes/index.js` are the javacript that runs when you load the webpage
 - `public/style.css` is the styles for `views/index.html`
-- Drag in `assets`, like images or music, to add them to your project
+- Medias used in our system store in `assets` 
 
 ---
 
-On the back-end,
+### Back End:
 
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
-- store database information
+- Our system starts at `app.js`
+- Our frameworks and packages are stored in `package.json`
+- Our Database key are stored in `.env` (nobody can see this but you and people you invite)
+- We use MongoDB database and schema information are stored in `models`
 
----
-
-On the Database,
-
-- using MongoDB through 
-- models 
 
 Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
