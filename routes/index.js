@@ -8,10 +8,9 @@ const cartSchema = new Schema({
   email: "",
   product_list: []
 });
+var Cart = mongoose.model("Cart", cartSchema);
 var my_cart;
 var payment_message = "Please Make Your Payment";
-var Cart = mongoose.model("Cart", cartSchema);
-
 function set_payment_message(msg) {
   payment_message = msg;
 }
